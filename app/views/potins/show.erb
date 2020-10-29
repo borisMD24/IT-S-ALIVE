@@ -1,0 +1,35 @@
+<div class="potin">
+    <div class="title">
+        <%= @potins.title %>
+    </div>
+    <div class="content">
+        <%= @potins.content %>
+    </div>
+    <div class="user">
+       par : <%= @potins.user.first_name%> <%= @potins.user.last_name%>
+    </div>
+     <i class="fas fa-thumbs-up
+     <%if @liked && session[:user_id]%>
+        liked
+    <%end%>
+     "></i> <%=@likes%>
+     <%if @liked && session[:user_id]%>
+        <%= form_tag url_for(controller: 'like', action: 'destroy', potin_id: @potins.id), method: "delete" do %>
+
+            <%= submit_tag 'unlike!' %>
+        <% end %>
+    <%end%>
+     <%if !@liked && session[:user_id]%>
+        <%= form_tag url_for(controller: 'like', action: 'create', potin_id: @potins.id), method: "post" do %>
+
+            <%= submit_tag 'like!' %>
+        <% end %>
+    <%end%>
+    <%if @potins.user_id == session[:user_id]%>
+        <%= form_tag url_for(action: 'destroy'), method: "delete" do %>
+            <%= submit_tag 'Delete post!' %>
+        <% end %>
+        <%= link_to raw('<div class="btn"> accueil </div>'), "#{@potins.id}/edit"%>
+    <%end%>
+</div>
+

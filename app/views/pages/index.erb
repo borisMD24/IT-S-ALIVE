@@ -1,0 +1,18 @@
+<h1>HOME</h1>
+<div class="potin_container">
+    <% @potins.each do |potin| %>
+        <div class="hpotin">
+            <div class="title">
+                <%= potin.title %>
+            </div>
+            <div class="content">
+                <%= potin.content%>
+            </div>
+            <div class ="author">
+                par : <%= link_to potin.user.first_name, user_path(potin.user) %>
+            </div>
+            <%= link_to "Voir Potin", potin_path(potin)%>
+            </br>
+        </div>
+    <%end%>
+</div>

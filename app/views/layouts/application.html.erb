@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TGP</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+  <script src="https://kit.fontawesome.com/10557b428c.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%if notice%>
+      <div class="validate">
+        <div class="text">
+          <%=notice%>
+        </div>
+        <div class=valid>
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+    <%end%>
+    <%if alert%>
+      <div class="validate">
+        <div class="text">
+          <%=alert%>
+        </div>
+        <div class=wrong>
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+      </div>
+    <%end%>
+    <%if session[:user_id]%>
+      <%= link_to "Se déconnecter", session_path(session.id), method: :delete %>
+    <%end%>
+    <div class="header">
+      <div class="wrapper">
+
+        <span class="brand">
+          The Gossip Project
+        </span>
+        <div class="comment">
+        Ça reste entre nous?
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <div class="items">
+        <div class="btn-container">
+        <%= link_to raw('<div class="btn"> accueil </div>'), root_path%>
+
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>
